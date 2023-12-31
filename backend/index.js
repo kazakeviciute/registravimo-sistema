@@ -4,11 +4,21 @@ require('dotenv').config();
 
 const app = express();
 app.use(cors());
-const port = process.env.PORT || 8080
-const fruits = ['apple']
+app.use(express.json());
 
-app.get("/", (req, res) => {
+const port = process.env.PORT || 8080
+const fruits = [{_id: "123456", name: "Apple"}]
+
+app.get("/fruits", (req, res) => {
     res.send(fruits);
+});
+
+app.post("/fruits", (req, res) => {
+    const fruit = req.body;
+    const newFruit = { ...fruit, _id: Date.now().toString() }
+    fruits.push(fruit);
+    console.log(fruit);
+    res.send(newFruit);
 });
 
 app.listen(port, () => console.log(`serveris veikia ant porto ${port}`));
