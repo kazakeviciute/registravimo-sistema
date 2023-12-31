@@ -1,6 +1,7 @@
-import * as Yup from 'yup';
-import {Formik, Form, Field} from 'formik';
-import { createFruit } from './api/fruits';
+import PropTypes from "prop-types";
+//import * as Yup from "yup";
+import { Formik, Form, Field } from "formik";
+import { createFruit } from "./api/fruits";
 
 const FruitForm = ({handleAddFruit}) => {
   const handleSubmit = async (values) => {
@@ -21,5 +22,9 @@ const FruitForm = ({handleAddFruit}) => {
     </Formik>
   );
 };
+
+FruitForm.propTypes = {
+  handleAddFruit: PropTypes.func.isRequired,
+}
 
 export default FruitForm;
