@@ -1,1 +1,2 @@
-# registravimo-sistema
+# Registravimo Sistema
+Baigiamasis darbas.
