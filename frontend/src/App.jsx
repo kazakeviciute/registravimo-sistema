@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import FruitForm from "./FruitForm";
 
 const App = () => {
   const [fruits, setFruits] = useState([]); 
@@ -18,6 +19,7 @@ const App = () => {
 
   return (
     <div>
+      <FruitForm />
       <ul>
         {fruits.map((fruit) => (
           <li key={fruit}>{fruit}</li>
