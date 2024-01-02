@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 //import * as Yup from "yup";
 import { Formik, Form, Field, FieldArray } from "formik";
-import { fetchAttendees, createAttendee } from "./api/attendees";
+import { fetchAttendees, createAttendee, deleteAttendee } from "./api/attendees";
 
 const attl = await fetchAttendees();
 
@@ -37,7 +37,11 @@ const AttendeeForm = ({handleAddAttendee}) => {
                       <Field name={`attendees.${index}.gimimo_data`} />
                       <button
                         type="button"
-                        onClick={() => arrayHelpers.remove(index)}
+                        //onClick={() => arrayHelpers.remove(index)}
+                        onClick={() => {
+                          //console.log(values.attendees[index]._id);
+                          deleteAttendee(values.attendees[index]._id);
+                        }}
                       >
                         -
                       </button>
