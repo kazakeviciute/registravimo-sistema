@@ -30,8 +30,11 @@ const AttendeeForm = ({handleAddAttendee}) => {
                 <div>
                   {values.attendees.map((attendee, index) => (
                     <div key={index}>
-                      <Field name={`attendees[${index}].vardas`} />
+                      <Field name={`attendees.${index}._id`} />
+                      <Field name={`attendees.${index}.vardas`} />
                       <Field name={`attendees.${index}.pavarde`} />
+                      <Field type="email" name={`attendees.${index}.el_pastas`} />
+                      <Field name={`attendees.${index}.gimimo_data`} />
                       <button
                         type="button"
                         onClick={() => arrayHelpers.remove(index)}
@@ -42,8 +45,20 @@ const AttendeeForm = ({handleAddAttendee}) => {
                   ))}
                   <button
                     type="button"
-                    onClick={() => arrayHelpers.push({ vardas: "", pavarde: "" })}
-                  >
+                    //onClick={() => arrayHelpers.push({ vardas: "", pavarde: "" })}
+                    onClick={() => {
+                      console.log('push');
+                    
+                      var at = new Object(); 
+                      at._id = Date.now().toString();
+                      at.vardas = "ccc";
+                      at.pavarde = "ff";
+                      at.el_pastas = "a@a.lt";
+                      at.gimimo_data = "1986-09-06T00:00:00.000Z";
+                      //var jsonString = JSON.stringify(at);
+                      //var at = new attendee();
+                      createAttendee(at);
+                    }}>
                     +
                   </button>
                 </div>

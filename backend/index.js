@@ -13,19 +13,20 @@ app.use(express.json());
 
 const client = new MongoClient(uri);
 
-const fruits = [{_id: "123456", name: "Apple"}]
 
-app.get("/fruits", (req, res) => {
-    res.send(fruits);
-});
+//const fruits = [{_id: "123456", name: "Apple"}]
 
-app.post("/fruits", (req, res) => {
-    const fruit = req.body;
-    const newFruit = { ...fruit, _id: Date.now().toString() }
-    fruits.push(fruit);
-    console.log(fruit);
-    res.send(newFruit);
-});
+//app.get("/fruits", (req, res) => {
+//    res.send(fruits);
+//});
+
+//app.post("/fruits", (req, res) => {
+ //   const fruit = req.body;
+ //   const newFruit = { ...fruit, _id: Date.now().toString() }
+ //   fruits.push(fruit);
+ //   console.log(fruit);
+ //   res.send(newFruit);
+//});
 
 app.get("/attendees", async (req, res) => {
   try {
@@ -40,4 +41,19 @@ app.get("/attendees", async (req, res) => {
   }
 });
 
+app.post("/attendees", async (req, res) => {
+    try {
+      const at = req.body;
+      //const newAttendee = {...attendee, vardas: "Pelėda"};
+      const con = await client.connect();
+      console.log('prisijungėm prie mongodb');
+      const response = await con.db('call_register').collection('attendees').insertOne(at);
+      await client.close();
+      res.send(response);
+    } catch(error) {
+      console.log('nepavyko prisijungti prie mongodb');
+      res.status(400).send(error);
+    }
+  });
+  
 app.listen(port, () => console.log(`serveris veikia ant porto ${port}`));
