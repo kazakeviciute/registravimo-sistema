@@ -7,7 +7,6 @@ const attl = await fetchAttendees();
 
 const AttendeeForm = ({handleAddAttendee}) => {
 
-
   const handleSubmit = async (values) => {
     try {
       const response = await createAttendee(values);
@@ -21,6 +20,7 @@ const AttendeeForm = ({handleAddAttendee}) => {
      
 <Formik
   initialValues={{ attendees:  attl }}
+  
   >
         {({ values }) => (
           <Form>
@@ -39,45 +39,51 @@ const AttendeeForm = ({handleAddAttendee}) => {
                         type="button"
                         //onClick={() => arrayHelpers.remove(index)}
                         onClick={() => {
-                          //console.log(values.attendees[index]._id);
-                          //deleteAttendee(values.attendees[index]._id);
-
-
-                          var at = new Object(); 
-                      at._id = values.attendees[index]._id;
-                      at.vardas = "xxx";
-                      at.pavarde = "xxx";
-                      at.el_pastas = "a@a.lt";
-                      at.gimimo_data = "1986-09-06T00:00:00.000Z";
-                          updateAttendee(at);
+                          deleteAttendee(values.attendees[index]._id);
                         }}
                       >
                         -
+                      </button>
+                      <button
+                        type="button"
+                        //onClick={() => arrayHelpers.remove(index)}
+                        onClick={() => {
+                          var at = new Object(); 
+                          at._id = values.attendees[index]._id;
+                          at.vardas = values.attendees[index].vardas;
+                          at.pavarde = values.attendees[index].pavarde;
+                          at.el_pastas = values.attendees[index].el_pastas;
+                          at.gimimo_data = values.attendees[index].gimimo_data;
+                          updateAttendee(at);
+                        }}
+                      >
+                        u
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          var at = new Object(); 
+                          at._id = values.attendees[index]._id;
+                          at.vardas = values.attendees[index].vardas;
+                          at.pavarde = values.attendees[index].pavarde;
+                          at.el_pastas = values.attendees[index].el_pastas;
+                          at.gimimo_data = values.attendees[index].gimimo_data;
+                          createAttendee(at);
+                        }}
+                      >
+                        a
                       </button>
                     </div>
                   ))}
                   <button
                     type="button"
-                    //onClick={() => arrayHelpers.push({ vardas: "", pavarde: "" })}
-                    onClick={() => {
-                      console.log('push');
-                    
-                      var at = new Object(); 
-                      at._id = Date.now().toString();
-                      at.vardas = "ccc";
-                      at.pavarde = "ff";
-                      at.el_pastas = "a@a.lt";
-                      at.gimimo_data = "1986-09-06T00:00:00.000Z";
-                      //var jsonString = JSON.stringify(at);
-                      //var at = new attendee();
-                      createAttendee(at);
-                    }}>
+                    onClick={() => arrayHelpers.push({ _id:Date.now().toString(), vardas: "", pavarde: "", el_pastas: "", gimimo_data: "" })}                      
+                    >
                     +
                   </button>
                 </div>
               )}
             />
-            <pre>{JSON.stringify(values, null, 2)}</pre>
           </Form>
         )}
       </Formik>
