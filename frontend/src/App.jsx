@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
-import FruitForm from "./FruitForm";
-import { fetchFruits } from "./api/fruits";
+//import FruitForm from "./FruitForm";
+import AttendeeForm from "./AttendeeForm";
+//import { fetchFruits } from "./api/fruits";
+import { fetchAttendees } from "./api/attendees";
 
 const App = () => {
   const [fruits, setFruits] = useState([]); 
-
+/*
   useEffect(() => {
     fetchFruits()
       .then((response) => {
@@ -14,8 +16,21 @@ const App = () => {
       console.error(error);
     });
   }, []);
-
+*/
+  useEffect(() => {
+    fetchAttendees().then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }, []);
+/*
   const handleAddFruit = (fruit) => {
+    setFruits(prevFruits => [...prevFruits, fruit])
+  }
+*/
+  const handleAddAttendee = (fruit) => {
     setFruits(prevFruits => [...prevFruits, fruit])
   }
 
@@ -33,15 +48,15 @@ const App = () => {
   */
 
   console.log(fruits); 
-
+ //<FruitForm handleAddFruit={handleAddFruit} />
+ //<ul>
+ //       {fruits.map((fruit) => (
+ //         <li key={fruit.name}>{fruit.name}</li>
+ //       ))}
+ //     </ul>
   return (
     <div>
-      <FruitForm handleAddFruit={handleAddFruit} />
-      <ul>
-        {fruits.map((fruit) => (
-          <li key={fruit.name}>{fruit.name}</li>
-        ))}
-      </ul>
+      <AttendeeForm handleAddAttendee={handleAddAttendee} />
     </div>
   );
 };
