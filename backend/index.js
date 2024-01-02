@@ -27,6 +27,7 @@ app.get("/attendees", async (req, res) => {
 });
 
 app.post("/attendees", async (req, res) => {
+    console.log(req.body);
     try {
       const at = req.body;
       const con = await client.connect();
@@ -35,6 +36,26 @@ app.post("/attendees", async (req, res) => {
         .db('call_register')
         .collection('attendees')
         .insertOne(at);
+      await client.close();
+      res.send(response);
+    } catch(error) {
+      console.log('nepavyko prisijungti prie mongodb');
+      res.status(400).send(error);
+    }
+  });
+
+  app.post("/attendees/:id", async (req, res) => {
+    console.log(req.body);
+    try {
+        
+      const id = req.params.id;
+      const at = req.body;
+      const con = await client.connect();
+      console.log('prisijungėm prie mongodb');
+      const response = await con
+        .db('call_register')
+        .collection('attendees')
+        .updateOne({ "_id": id }, { $set: at } );
       await client.close();
       res.send(response);
     } catch(error) {
@@ -59,5 +80,6 @@ app.post("/attendees", async (req, res) => {
       res.status(400).send(error);
     }
   });
+
 
 app.listen(port, () => console.log(`serveris veikia ant porto ${port}`));

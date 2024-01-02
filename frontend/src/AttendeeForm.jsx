@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 //import * as Yup from "yup";
 import { Formik, Form, Field, FieldArray } from "formik";
-import { fetchAttendees, createAttendee, deleteAttendee } from "./api/attendees";
+import { fetchAttendees, createAttendee, deleteAttendee, updateAttendee } from "./api/attendees";
 
 const attl = await fetchAttendees();
 
@@ -40,7 +40,16 @@ const AttendeeForm = ({handleAddAttendee}) => {
                         //onClick={() => arrayHelpers.remove(index)}
                         onClick={() => {
                           //console.log(values.attendees[index]._id);
-                          deleteAttendee(values.attendees[index]._id);
+                          //deleteAttendee(values.attendees[index]._id);
+
+
+                          var at = new Object(); 
+                      at._id = values.attendees[index]._id;
+                      at.vardas = "xxx";
+                      at.pavarde = "xxx";
+                      at.el_pastas = "a@a.lt";
+                      at.gimimo_data = "1986-09-06T00:00:00.000Z";
+                          updateAttendee(at);
                         }}
                       >
                         -
