@@ -4,6 +4,7 @@ import AttendeeForm from "./AttendeeForm";
 //import { fetchFruits } from "./api/fruits";
 import { fetchAttendees } from "./api/attendees";
 
+
 const App = () => {
  // const [fruits, setFruits] = useState([]); 
 /*
