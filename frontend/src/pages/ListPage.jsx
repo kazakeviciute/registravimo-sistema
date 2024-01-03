@@ -13,14 +13,10 @@ const ListPage = () => {
     });
   }, []);
 
-  const handleAddAttendee = (attendee) => {
-   // setFruits(prevFruits => [...prevFruits, fruit])
-  }
-
   return (
     <div className={styles.container}>
       <h1>Registravimo Sistema</h1>
-      <AttendeeForm handleAddAttendee={handleAddAttendee} />
+      <AttendeeForm />
       <div className={styles.footer}>© 2024</div>
     </div>
   );
