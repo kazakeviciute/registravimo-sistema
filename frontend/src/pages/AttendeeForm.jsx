@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 //import * as Yup from "yup";
 import { Formik, Form, Field, FieldArray } from "formik";
-import { fetchAttendees, createAttendee, deleteAttendee, updateAttendee } from "./api/attendees";
-import Button from "./components/Button";
+import { fetchAttendees, createAttendee, deleteAttendee, updateAttendee } from "../api/attendees"
+import Button from "../components/Button";
 
 const attl = await fetchAttendees();
 
