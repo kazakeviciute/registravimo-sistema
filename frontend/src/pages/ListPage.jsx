@@ -1,6 +1,7 @@
 import { useEffect } from "react";
-import AttendeeForm from "./AttendeeForm";
+import AttendeeForm from "../components/AttendeeForm";
 import { fetchAttendees } from "../api/attendees";
+import styles from "./ListPage.module.scss";
 
 const ListPage = () => {
   useEffect(() => {
@@ -17,8 +18,10 @@ const ListPage = () => {
   }
 
   return (
-    <div>
+    <div className={styles.container}>
+      <h1>Registravimo Sistema</h1>
       <AttendeeForm handleAddAttendee={handleAddAttendee} />
+      <div className={styles.footer}>© 2024</div>
     </div>
   );
 };
