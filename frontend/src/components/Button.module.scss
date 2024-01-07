@@ -8,11 +8,14 @@
   border-radius: 6px;
   margin-bottom: 5px;
   margin-right: 3px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+  border: solid;
+  border-color: $primary-color-dark;
+
 
   &:hover {
     background-color: $primary-color-dark;
+    cursor: pointer;
+    transition: background-color 0.4s;
   }
 
   &:disabled {

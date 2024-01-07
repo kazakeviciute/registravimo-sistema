@@ -31,7 +31,7 @@ return (
                 <td className={styles.td}><label>Vardas</label></td>
                 <td className={styles.td}><label>Pavardė</label></td>
                 <td className={styles.td}><label>el.paštas</label></td>
-                <td className={styles.td}><label>amžius</label></td>
+                <td className={styles.td}><label>Amžius</label></td>
               </tr>
             </tbody>
           </table>
@@ -44,7 +44,7 @@ return (
               <Field className={styles.field} placeholder="Vardas" name={`attendees.${index}.vardas`}/>
               <Field className={styles.field} placeholder="Pavardė" name={`attendees.${index}.pavarde`} />
               <Field className={styles.field} placeholder="el@pastas.lt" type="email" name={`attendees.${index}.el_pastas`} />
-              <Field className={styles.field} placeholder="22" name={`attendees.${index}.gimimo_data`} />
+              <Field className={styles.field} placeholder="Amžius" name={`attendees.${index}.gimimo_data`} />
               
               <Button
                 type="button"
